@@ -21,5 +21,7 @@ application/database/CI_DB_for_master_slave.php  读写分离代码实现
  * 
  */
 $db['default']['slave_cfg']['enable'] = TRUE; //是否启用从库
+$db['default']['slave_cfg']['ignore_invalid'] = 30 ;//单位：秒,最小1秒。db连接不上时，多久之内都不再去连接（需要有自定义函数save_cache和get_cache支持）
 $db['default']['slave_cfg']['list'][] = array('hostname'=>$db['default']['hostname'],'weights'=>2);
 $db['default']['slave_cfg']['list'][] = array('hostname'=>'192.168.18.132:3306','weights'=>5);
+$db['default']['slave_cfg']['list'][] = array('hostname'=>'192.168.18.132:123456','weights'=>5);//无效的slave
